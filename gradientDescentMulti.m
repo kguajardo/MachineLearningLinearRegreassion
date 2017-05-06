@@ -7,6 +7,7 @@ function [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters
 m = length(y); % number of training examples
 J_history = zeros(num_iters, 1);
 
+
 for iter = 1:num_iters
 
     % ====================== YOUR CODE HERE ======================
@@ -14,24 +15,29 @@ for iter = 1:num_iters
     %               theta. 
     %
     % Hint: While debugging, it can be useful to print out the values
-    %       of the cost function (computeCostMulti) and gradient here.
+    %       of the cost function (computeCost) and gradient here.
     %
-
-
-
-
-
-
-
-
-
-
+    
+    
+   prediction = X * theta;
+   error = (prediction-y);
+        
+   n= length(theta);
+   for j= 1:n
+     %find theta for all j's
+     delta = (alpha/m) * error' * X(:,j);
+     theta(j,:) = theta(j,:) - delta;
+   end
+    
+       
 
     % ============================================================
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCostMulti(X, y, theta);
+    
 
 end
 
 end
+

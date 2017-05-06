@@ -24,11 +24,26 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
+% 
+%First Calculate mean and standard deviation for each feature      
+numColumns = size(X,2);
+m = size(X,1);
+for iter= 1:numColumns
+  mu(iter) = mean(X(:,iter)); %Get the mean of the column and store in mu
+  sigma(iter) = std(X(:,iter)); %Get the standard deviation of the column and store in sigma
+end
 
+%Calculate normalized X matrix 
+% xNormalized(i) =( x(i) - mu(i))/ sigma(i)
 
+%Recalculate each value of X an put it into X_norm
 
-
+for col = 1:numColumns
+  for row = 1:m
+    X_norm(row,col) =( X(row,col) - mu(col))/sigma(col);
+  end
+end
+  
 
 
 
